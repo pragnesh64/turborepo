@@ -1,0 +1,8 @@
+@import "@my-monorepo/shared/src/style/theme.css";
+
+/* Project-level overrides applied on :root so they take precedence at runtime */
+:root {
+  /* Navy */
+  --color-primary: red;
+  --color-success: blue;
+}
