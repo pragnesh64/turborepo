@@ -1,46 +1,44 @@
 {
-    "compilerOptions": {
-        "target": "ES2020",
-        "useDefineForClassFields": true,
-        "lib": [
-            "ES2020",
-            "DOM",
-            "DOM.Iterable"
-        ],
-        "module": "ESNext",
-        "skipLibCheck": true,
-        "moduleResolution": "bundler",
-        "allowImportingTsExtensions": true,
-        "resolveJsonModule": true,
-        "isolatedModules": true,
-        "noEmit": true,
-        "jsx": "react-jsx",
-        "strict": true,
-        "noUnusedLocals": true,
-        "noUnusedParameters": true,
-        "noFallthroughCasesInSwitch": true,
-        "paths": {
-            "@shared": [
-                "./packages/shared/src/components",
-                "./packages/shared/src/hooks",
-                "./packages/shared/src/utils",
-                "./packages/shared/src/api"
-            ],
-            "@shared/*": [
-                "./packages/shared/src/*"
-            ],
-        }
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "paths": {
+      "@shared": [
+        "./packages/shared/src/components",
+        "./packages/shared/src/hooks",
+        "./packages/shared/src/utils",
+        "./packages/shared/src/api",
+        "./packages/shared/src/context"
+      ],
+      "@shared/*": ["./packages/shared/src/*"]
+    }
+  },
+  "include": [],
+  "references": [
+    {
+      "path": "./packages/shared"
     },
-    "include": [],
-    "references": [
-        {
-            "path": "./packages/shared"
-        },
-        {
-            "path": "./apps/salesBot"
-        },
-        {
-            "path": "./apps/adminPanel"
-        }
-    ]
+    {
+      "path": "./apps/salesBot"
+    },
+    {
+      "path": "./apps/adminPanel"
+    },
+    {
+      "path": "./apps/partner"
+    }
+  ]
 }

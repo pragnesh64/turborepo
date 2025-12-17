@@ -1,7 +1,11 @@
 // import { useState } from "react";
 // import { optionType } from "@shared/components/Dropdown/types";
 
+import { useAlert } from "@shared/context";
+import { useEffect } from "react";
+
 function Dashboard() {
+  const showAlert = useAlert();
   //   const [selectedCountry, setSelectedCountry] = useState<optionType | null>(
   //     null
   //   );
@@ -12,6 +16,10 @@ function Dashboard() {
   //     { Id: "3", Value: "Australia" },
   //     { Id: "4", Value: "Germany" },
   //   ];
+
+  useEffect(() => {
+    showAlert("No changes detected", "info");
+  }, []);
   return (
     <>
       {/* <Box sx={{ width: 320, mb: 4 }}>
