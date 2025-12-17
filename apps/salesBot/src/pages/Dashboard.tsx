@@ -1,6 +1,5 @@
 // import { useState } from "react";
 // import { optionType } from "@shared/components/Dropdown/types";
-import CreditsDropdown from "../../../../packages/shared/src/components/CreditsDropdown/index";
 
 function Dashboard() {
   //   const [selectedCountry, setSelectedCountry] = useState<optionType | null>(
@@ -26,7 +25,6 @@ function Dashboard() {
         />
       </Box> */}
 
-      <CreditsDropdown />
     </>
   );
 }

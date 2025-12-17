@@ -8,7 +8,6 @@
     "exports": {
         ".": "./src/index.ts",
         "./src/styles.css": "./src/styles.css",
-        "./tailwind/*": "./tailwind/*",
         "./src/style/*": "./src/style/*",
         "./style/*": "./src/style/*"
     },
