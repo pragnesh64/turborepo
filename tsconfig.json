@@ -23,7 +23,8 @@
             "@shared": [
                 "./packages/shared/src/components",
                 "./packages/shared/src/hooks",
-                "./packages/shared/src/utils"
+                "./packages/shared/src/utils",
+                "./packages/shared/src/api"
             ],
             "@shared/*": [
                 "./packages/shared/src/*"
