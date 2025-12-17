@@ -27,7 +27,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
   onVariableClick,
   error,
   placeholder,
-  borderRadius = 12,
+  borderRadius = 8,
   maxLength = 100,
   readonly,
   ...props
@@ -82,12 +82,12 @@ const CustomInput: React.FC<CustomInputProps> = ({
       {/* Input Wrapper */}
       <div
         className={`
-          flex items-center bg-white border px-3  transition-all
+          flex items-center  bg-white border px-3  transition-all
           ${hasValidError ? "border-red-500" : "border-gray-300"}
           hover:${hasValidError ? "border-red-500" : "border-gray-400"}
           focus-within:${hasValidError ? "border-red-500" : "border-gray-400"}
         `}
-        style={{ borderRadius }}
+        style={{ borderRadius, height: 40 }}
       >
         {/* Start Icon */}
         {startIcon && <span className="mr-2 text-gray-500">{startIcon}</span>}

@@ -1,20 +1,18 @@
-import InfiniteDropdown, { OptionType } from "@shared/components/form/Dropdown";
-import CustomInput from "@shared/components/form/Input";
-import CreditsDropdown from "@shared/components/overlay/CreditsDropdown";
 import axios from "axios";
 import { useState } from "react";
+import CreditsDropdown from "@shared/components/overlay/CreditsDropdown";
+import InfiniteDropdown, { OptionType } from "@shared/components/form/Dropdown";
+import CustomInput from "@shared/components/form/Input";
 
 function Dashboard() {
   const [categoryLookUp, setCategoryLookUp] = useState<OptionType | null>(null);
 
-  // Create category function - returns the full axios response
   const createCategory = async (data: { name: string }) => {
     const response = await axios.post(
       "https://api.salesbot.cloud/core/product_category/",
       data
     );
-    console.log("🚀 ~ createCategory ~ response:", response);
-    return response; // Return the full response, not just { id }
+    return response;
   };
 
   return (
@@ -22,7 +20,7 @@ function Dashboard() {
       <CreditsDropdown />
 
       <CustomInput formLabel="Name" required placeholder="Enter Name" />
-      <CustomInput formLabel="Last Name" />
+      <CustomInput formLabel="Last Name" placeholder="Last Name" />
 
       <InfiniteDropdown
         formLabel="Category"
@@ -38,7 +36,6 @@ function Dashboard() {
         }}
         isCreatable={true}
         onCreate={(value) => {
-          console.log("🚀 ~ Dashboard ~ value:", value);
           return createCategory({ name: value });
         }}
         isRequired={true}

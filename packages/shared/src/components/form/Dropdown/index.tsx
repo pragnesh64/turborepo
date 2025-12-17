@@ -306,8 +306,9 @@ const InfiniteDropdown = <M extends boolean = false>(
       <Select
         className="w-full h-10"
         placeholder={placeholder}
-        showSearch
+        // showSearch
         allowClear
+        style={{ borderRadius: 8 }}
         mode={multiple ? "multiple" : undefined}
         filterOption={false}
         onSearch={handleSearch}
