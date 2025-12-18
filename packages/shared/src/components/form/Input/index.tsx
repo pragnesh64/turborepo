@@ -1,23 +1,9 @@
 import React, { useMemo } from "react";
 import { Input as AntInput, Tooltip } from "antd";
-import type { InputProps as AntInputProps } from "antd/es/input";
 import { InfoCircleOutlined } from "@ant-design/icons";
+import { CustomInputProps } from "./types";
 
-export interface CustomInputProps extends AntInputProps {
-  formLabel?: string;
-  required?: boolean;
-  error?: string | string[] | Record<string, unknown>;
-  description?: string;
-  startIcon?: React.ReactNode;
-  endIcon?: React.ReactNode;
-  variableToken?: string;
-  onVariableClick?: (token: string) => void;
-  borderRadius?: number;
-  maxLength?: number;
-  readonly?: boolean;
-}
-
-const CustomInput: React.FC<CustomInputProps> = ({
+const Input: React.FC<CustomInputProps> = ({
   formLabel = "",
   required,
   description,
@@ -114,4 +100,4 @@ const CustomInput: React.FC<CustomInputProps> = ({
   );
 };
 
-export default CustomInput;
+export default Input;

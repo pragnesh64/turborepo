@@ -1,23 +1,19 @@
-import axios from "axios";
-import { useState } from "react";
 import CreditsDropdown from "@shared/components/overlay/CreditsDropdown";
 import CustomInput from "@shared/components/form/Input";
-import { AuthClient } from "../lib/client";
-import InfiniteDropdown, { OptionType } from "@shared/components/form/Dropdown";
 
 import { useAlert } from "@shared/context";
 import { useEffect } from "react";
 
 function Dashboard() {
-  const [categoryLookUp, setCategoryLookUp] = useState<OptionType | null>(null);
+  // const [categoryLookUp, setCategoryLookUp] = useState<OptionType | null>(null);
 
-  const createCategory = async (data: { name: string }) => {
-    const response = await axios.post(
-      "https://api.salesbot.cloud/core/product_category/",
-      data
-    );
-    return response;
-  };
+  // const createCategory = async (data: { name: string }) => {
+  //   const response = await axios.post(
+  //     "https://api.salesbot.cloud/core/product_category/",
+  //     data
+  //   );
+  //   return response;
+  // };
 
   const showAlert = useAlert();
   //   const [selectedCountry, setSelectedCountry] = useState<optionType | null>(
@@ -41,7 +37,7 @@ function Dashboard() {
       <CustomInput formLabel="Name" required placeholder="Enter Name" />
       <CustomInput formLabel="Last Name" placeholder="Last Name" />
 
-      <InfiniteDropdown
+      {/* <Dropdown
         formLabel="Category"
         placeholder="Create or Select Category"
         apiUrl="https://api.salesbot.cloud/onboard/state/fetch_all"
@@ -64,7 +60,7 @@ function Dashboard() {
             Value: item.name || item.label,
           })) || []
         }
-      />
+      /> */}
     </>
   );
 }

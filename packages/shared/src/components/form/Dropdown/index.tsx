@@ -1,37 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Select, Spin, type SelectProps } from "antd";
-import { AxiosResponse } from "axios";
+import { InfiniteDropdownProps, OptionType } from "./types";
 
-export type OptionType = {
-  Id: string;
-  Value: string;
-  displayValue?: string;
-  isNew?: boolean;
-};
-
-export interface InfiniteDropdownProps<M extends boolean = false> {
-  apiUrl?: string;
-  pageSize?: number;
-  multiple?: M;
-  value?: M extends true ? OptionType[] | null : OptionType | null;
-  onChange?: (
-    value: M extends true ? OptionType[] | null : OptionType | null
-  ) => void;
-  options?: OptionType[];
-  client: any;
-  isCreatable?: boolean;
-  onCreate?: (label: string) => Promise<any>;
-  formLabel?: string;
-  placeholder?: string;
-  errorMessage?: string;
-  isRequired?: boolean;
-  filterValue?: Record<string, unknown>;
-  mapResponseToOptions?: (response: AxiosResponse) => OptionType[];
-  disabled?: boolean;
-  className?: string;
-}
-
-const InfiniteDropdown = <M extends boolean = false>(
+const Dropdown = <M extends boolean = false>(
   props: InfiniteDropdownProps<M>
 ) => {
   const {
@@ -336,4 +307,4 @@ const InfiniteDropdown = <M extends boolean = false>(
   );
 };
 
-export default InfiniteDropdown;
+export default Dropdown;
