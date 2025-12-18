@@ -21,7 +21,8 @@
         "./packages/shared/src/hooks",
         "./packages/shared/src/utils",
         "./packages/shared/src/api",
-        "./packages/shared/src/context"
+        "./packages/shared/src/context",
+        "./packages/shared/src/constant"
       ],
       "@shared/*": ["./packages/shared/src/*"]
     }
