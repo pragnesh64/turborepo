@@ -8,7 +8,6 @@ export interface ViewDrawerProps {
   fields?: ViewField[];
 }
 
-/* ---------- Field Type ---------- */
 export interface ViewField<T = unknown> {
   label: string;
   fieldName: string;
