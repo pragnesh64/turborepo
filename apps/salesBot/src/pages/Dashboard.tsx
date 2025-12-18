@@ -5,6 +5,9 @@ import CustomInput from "@shared/components/form/Input";
 import { AuthClient } from "../lib/client";
 import InfiniteDropdown, { OptionType } from "@shared/components/form/Dropdown";
 
+import { useAlert } from "@shared/context";
+import { useEffect } from "react";
+
 function Dashboard() {
   const [categoryLookUp, setCategoryLookUp] = useState<OptionType | null>(null);
 
@@ -16,6 +19,21 @@ function Dashboard() {
     return response;
   };
 
+  const showAlert = useAlert();
+  //   const [selectedCountry, setSelectedCountry] = useState<optionType | null>(
+  //     null
+  //   );
+
+  //   const countryOptions: optionType[] = [
+  //     { Id: "1", Value: "India" },
+  //     { Id: "2", Value: "Canada" },
+  //     { Id: "3", Value: "Australia" },
+  //     { Id: "4", Value: "Germany" },
+  //   ];
+
+  useEffect(() => {
+    showAlert("No changes detected", "info");
+  }, []);
   return (
     <>
       <CreditsDropdown />

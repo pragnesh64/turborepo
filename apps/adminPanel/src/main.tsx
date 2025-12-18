@@ -5,6 +5,8 @@ import "@my-monorepo/shared/src/style/theme.css";
 import "@my-monorepo/shared/src/styles.css";
 import "./theme.css";
 import App from "./App";
+import { BrowserRouter } from "react-router-dom";
+import { AlertProvider } from "@shared/context";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -18,7 +20,11 @@ const queryClient = new QueryClient({
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <App />
+      <BrowserRouter>
+        <AlertProvider>
+          <App />
+        </AlertProvider>
+      </BrowserRouter>
     </QueryClientProvider>
   </React.StrictMode>
 );
