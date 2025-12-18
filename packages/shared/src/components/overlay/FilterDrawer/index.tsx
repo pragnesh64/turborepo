@@ -98,15 +98,12 @@ const FilterDrawer: React.FC<FilterDrawerProps> = ({
     setErrors({ column: "", operator: "", value: "", range: "" });
   }, [open, filterModel, columns]);
 
-  /* ---------------- derived ---------------- */
   const selectedColumnType =
     columnDataTypeMap[selectedColumn?.Id || ""] || "string";
 
   const operatorOptions =
     OPERATOR_MAP[selectedColumnType] || OPERATOR_MAP.string;
 
-  console.log("operatorOptions: ", operatorOptions);
-  /* ---------------- handlers ---------------- */
   const handleApply = () => {
     const newErrors = { column: "", operator: "", value: "", range: "" };
     let hasError = false;
@@ -179,8 +176,7 @@ const FilterDrawer: React.FC<FilterDrawerProps> = ({
     onClear?.();
     onClose();
   };
-  console.log("selectedColumnType: ", selectedColumnType);
-  /* ---------------- render ---------------- */
+
   return (
     <Drawer
       placement={placement}
@@ -195,17 +191,22 @@ const FilterDrawer: React.FC<FilterDrawerProps> = ({
         boxShadow: "0px 0px 30px -5px rgba(0,0,0,0.1)",
         backgroundColor: "#FFFFFF",
       }}
+       styles={{
+        footer: {
+          borderTop: "none",
+        },
+      }}
       footer={
         <div className="flex gap-3 px-4">
           <Button
-            onClick={handleClear}
+            onclick={handleClear}
             className="w-1/2 h-10 rounded-lg border border-gray-300 text-gray-600"
           >
             Clear
           </Button>
 
           <Button
-            onClick={handleApply}
+            onclick={handleApply}
             className="w-1/2 h-10 rounded-lg !bg-black hover:bg-black"
           >
             Apply Filter
@@ -231,7 +232,6 @@ const FilterDrawer: React.FC<FilterDrawerProps> = ({
             }))}
           //   error={errors.column}
           onChange={(opt) => {
-            console.log("opt: ", opt);
             setSelectedColumn(opt);
             setSelectedOperator(null);
             setFilterValue("");
