@@ -1,43 +1,12 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import { Input, Button, Dropdown, Tag } from "antd";
 import { MoreOutlined } from "@ant-design/icons";
-
-export interface SubHeaderLeftItem {
-  type: "title" | "search" | "filterTag" | "component";
-  value?: string;
-  tags?: string[];
-  component?: ReactNode;
-  placeholder?: string;
-  onSearch?: (value: string) => void;
-}
-
-export interface SubHeaderRightItem {
-  type: "button" | "dropdown" | "component";
-  subType?: "primary" | "default";
-  key?: string;
-  label?: string | ReactNode;
-  icon?: ReactNode;
-  onClick?: () => void;
-  variant?: "outlined" | "dashed" | "solid" | "filled" | "text" | "link";
-  color?: string;
-  items?: { key: string; label: ReactNode }[];
-  component?: ReactNode;
-  style?: React.CSSProperties;
-}
-
-// Union type for any item
-export type SubHeaderItem = SubHeaderLeftItem | SubHeaderRightItem;
-
-export interface SubHeaderConfig {
-  leftItems?: SubHeaderLeftItem[];
-  rightItems?: SubHeaderRightItem[];
-  className?: string;
-}
-
-interface SubHeaderProps {
-  config: SubHeaderConfig;
-  className?: string;
-}
+import {
+  SubHeaderItem,
+  SubHeaderLeftItem,
+  SubHeaderProps,
+  SubHeaderRightItem,
+} from "./types";
 
 export const SubHeader: React.FC<SubHeaderProps> = ({ config }) => {
   const { leftItems = [], rightItems = [], className = "" } = config;

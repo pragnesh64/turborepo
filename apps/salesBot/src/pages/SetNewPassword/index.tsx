@@ -1,16 +1,17 @@
 import { Form, Input, Button, Modal } from "antd";
+import { useState } from "react";
+
 import SetNewPasswordSvg from "@shared/assets/icons/set_new_password.svg";
 import SuccessIcon from "@shared/assets/icons/success_check.svg";
-import { useState } from "react";
 import OnboardingWrapper from "@shared/components/layout/OnboardingWrapper";
 
 export default function SetNewPassword() {
-  const [open, setOpen] = useState(false);
+  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
 
-  const onFinish = () => {
-    // 👉 Call API here
+  const handleSubmit = () => {
+    // Call API here
     // after success:
-    setOpen(true);
+    setIsSuccessModalOpen(true);
   };
 
   return (
@@ -21,29 +22,29 @@ export default function SetNewPassword() {
         <img
           src={SetNewPasswordSvg}
           alt="Set New Password"
-          className="mx-auto mb-6 w-[340px] h-[240px]"
+          className="mx-auto mb-6 h-[240px] w-[340px]"
         />
 
         {/* Title */}
-        <h2 className="text-3xl font-bold text-[var(--text-primary)] mb-2">
+        <h2 className="mb-2 text-3xl font-bold text-[var(--text-primary)]">
           Set New Password
         </h2>
 
         {/* Subtitle */}
-        <p className="text-base font-medium text-[var(--neutral-500)] mb-8 leading-relaxed">
+        <p className="mb-8 text-base font-medium leading-relaxed text-[var(--neutral-500)]">
           Create a strong new password for your account. Make sure it’s at least
           8 characters long and includes letters, numbers, or symbols.
         </p>
 
         {/* Form */}
-        <Form layout="vertical">
+        <Form layout="vertical" onFinish={handleSubmit}>
           <Form.Item
+            name="newPassword"
             label={
-              <span className="font-medium text-sm text-left block">
+              <span className="block text-left text-sm font-medium">
                 New Password*
               </span>
             }
-            name="newPassword"
           >
             <Input.Password
               placeholder="Enter new password"
@@ -52,12 +53,12 @@ export default function SetNewPassword() {
           </Form.Item>
 
           <Form.Item
+            name="confirmPassword"
             label={
-              <span className="font-medium text-sm text-left block">
+              <span className="block text-left text-sm font-medium">
                 Confirm Password*
               </span>
             }
-            name="confirmPassword"
           >
             <Input.Password
               placeholder="Enter confirm password"
@@ -65,14 +66,13 @@ export default function SetNewPassword() {
             />
           </Form.Item>
 
-          {/* Button */}
+          {/* Submit Button */}
           <Button
             htmlType="submit"
             block
-            className="h-11 rounded-lg border-none mt-2"
-            color="default"
+            className="mt-2 h-11 rounded-lg border-none"
             variant="solid"
-            onClick={onFinish}
+            color="default"
           >
             Submit
           </Button>
@@ -81,30 +81,30 @@ export default function SetNewPassword() {
 
       {/* Success Modal */}
       <Modal
-        open={open}
+        open={isSuccessModalOpen}
         footer={null}
-        closable
         centered
+        closable
         width={520}
-        onCancel={() => setOpen(false)}
+        onCancel={() => setIsSuccessModalOpen(false)}
       >
-        <div className="text-center py-6">
+        <div className="py-6 text-center">
           {/* Icon */}
-          <div className="flex justify-center mb-4">
+          <div className="mb-4 flex justify-center">
             <img
               src={SuccessIcon}
               alt="Success"
-              className="w-[80px] h-[80px]"
+              className="h-[80px] w-[80px]"
             />
           </div>
 
           {/* Title */}
-          <h3 className="text-3xl font-semibold mb-2">
+          <h3 className="mb-2 text-3xl font-semibold">
             Password Changed Successfully
           </h3>
 
           {/* Subtitle */}
-          <p className="text-[var(--neutral-500)] text-base">
+          <p className="text-base text-[var(--neutral-500)]">
             You can now log in using your new password
           </p>
         </div>

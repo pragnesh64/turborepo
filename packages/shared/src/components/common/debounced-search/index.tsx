@@ -1,9 +1,12 @@
 import { Input } from "antd";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+
 import { useDebounce } from "@shared/hooks/useDebounce";
 import { Search } from "@shared/components/icons";
+
 import { DebouncedSearchProps } from "./types";
 import "./style.css";
+
 export const DebouncedSearch = ({
   placeholder = "Search",
   delay = 500,
@@ -15,7 +18,10 @@ export const DebouncedSearch = ({
   const debouncedValue = useDebounce(value, delay);
 
   useEffect(() => {
-    if (debouncedValue.length >= minLength || debouncedValue === "") {
+    const shouldTriggerSearch =
+      debouncedValue === "" || debouncedValue.length >= minLength;
+
+    if (shouldTriggerSearch) {
       onSearch(debouncedValue);
     }
   }, [debouncedValue, minLength, onSearch]);
@@ -27,9 +33,7 @@ export const DebouncedSearch = ({
       placeholder={placeholder}
       prefix={<Search />}
       onChange={(e) => setValue(e.target.value)}
-      className={`
-       ant-input-affix-wrapper ${className}
-      `}
+      className={`ant-input-affix-wrapper ${className}`}
     />
   );
 };

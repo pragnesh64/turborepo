@@ -1,4 +1,5 @@
 import { Form, Input, Button } from "antd";
+
 import OtpVerificationSvg from "@shared/assets/icons/forgot_password.svg";
 import OnboardingWrapper from "@shared/components/layout/OnboardingWrapper";
 
@@ -11,16 +12,16 @@ export default function OtpVerification() {
         <img
           src={OtpVerificationSvg}
           alt="OTP Verification"
-          className="mx-auto mb-6 w-[340px] h-[240px]"
+          className="mx-auto mb-6 h-[240px] w-[340px]"
         />
 
         {/* Title */}
-        <h2 className="text-3xl font-bold text-[var(--text-primary)] mb-2">
+        <h2 className="mb-2 text-3xl font-bold text-[var(--text-primary)]">
           OTP Verification
         </h2>
 
         {/* Subtitle */}
-        <p className="text-base font-medium text-[var(--neutral-500)] mb-8 leading-relaxed">
+        <p className="mb-8 text-base font-medium leading-relaxed text-[var(--neutral-500)]">
           Please enter the 4-digit OTP sent to{" "}
           <span className="text-[var(--text-primary)]">example@gmail.com</span>
         </p>
@@ -29,53 +30,45 @@ export default function OtpVerification() {
         <Form layout="vertical">
           <Form.Item
             label={
-              <span className="font-medium text-sm text-left block">
+              <span className="block text-left text-sm font-medium">
                 Enter OTP*
               </span>
             }
           >
-            {/* OTP Boxes */}
+            {/* OTP Inputs */}
             <div className="flex justify-center gap-4">
-              {[0, 1, 2, 3, 4].map((i) => (
+              {[0, 1, 2, 3].map((index) => (
                 <Input
-                  key={i}
+                  key={index}
                   maxLength={1}
-                  className="
-                      w-[56px]
-                      h-[48px]
-                      text-center
-                      text-lg
-                      text-[var(--neutral-500)]
-                      font-medium
-                      border-[var(--input-border)]
-                    "
+                  className="h-[48px] w-[56px] border-[var(--input-border)] text-center text-lg font-medium text-[var(--neutral-500)]"
                 />
               ))}
             </div>
           </Form.Item>
 
-          {/* Resend */}
-          <p className="text-sm font-medium text-[var(--neutral-500)] mb-6">
+          {/* Resend Info */}
+          <p className="mb-6 text-sm font-medium text-[var(--neutral-500)]">
             Didn’t receive any code?{" "}
             <span className="text-[var(--text-primary)]">
               Resend OTP in 00:25
             </span>
           </p>
 
-          {/* Button */}
+          {/* Submit Button */}
           <Button
             htmlType="submit"
             block
             className="h-11 rounded-lg border-none"
-            color="default"
             variant="solid"
+            color="default"
           >
             Verify OTP
           </Button>
         </Form>
 
-        {/* Back to login */}
-        <p className="mt-6 text-[var(--neutral-500)] text-sm font-medium cursor-pointer">
+        {/* Back to Login */}
+        <p className="mt-6 cursor-pointer text-sm font-medium text-[var(--neutral-500)]">
           Back to Login
         </p>
       </div>

@@ -255,15 +255,15 @@ const Register = () => {
                 Log In
               </Link>
             </Text>
-
             {/* Right button */}
-            <Button
-              variantType="primary"
-              className="w-full sm:w-auto"
-              onClick={() => setStep(2)}
-            >
-              Next
-            </Button>
+            <div className="flex items-center justify-end gap-3">
+              {" "}
+              <Button variantType="primaryOutlined" onClick={() => setStep(1)}>
+                {" "}
+                Previous{" "}
+              </Button>{" "}
+              <Button variantType="primary">Select Plan</Button>{" "}
+            </div>{" "}
           </div>
         </Form>
       )}

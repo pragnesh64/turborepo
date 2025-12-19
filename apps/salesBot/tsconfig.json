@@ -26,7 +26,7 @@
   },
   "include": [
     "src",
-    "../../packages/shared/src/components/layout/subHeader",
+    "../../packages/shared/src/components/layout/SubHeader",
     "../../packages/shared/src/components/auth/SetNewPassword/index.tsx",
     "../../packages/shared/src/components/layout/OnboardingWrapper"
   ],

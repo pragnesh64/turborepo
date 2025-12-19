@@ -1,4 +1,5 @@
 import { Button } from "antd";
+
 import CheckEmailSvg from "@shared/assets/icons/password_verification.svg";
 import OnboardingWrapper from "@shared/components/layout/OnboardingWrapper";
 
@@ -11,27 +12,27 @@ export default function CheckYourEmail() {
         <img
           src={CheckEmailSvg}
           alt="Check Your Email"
-          className="mx-auto mb-6 w-[340px] h-[240px]"
+          className="mx-auto mb-6 h-[240px] w-[340px]"
         />
 
         {/* Title */}
-        <h2 className="text-3xl font-bold text-[var(--text-primary)] mb-3">
+        <h2 className="mb-3 text-3xl font-bold text-[var(--text-primary)]">
           Check Your Email
         </h2>
 
         {/* Subtitle */}
-        <p className="text-base font-medium text-[var(--neutral-500)] mb-10 leading-relaxed">
+        <p className="mb-10 text-base font-medium leading-relaxed text-[var(--neutral-500)]">
           We&apos;ve sent password reset instructions to{" "}
           <span className="text-[var(--text-primary)]">example@gmail.com</span>.
           Please follow the steps in your email to reset your password.
         </p>
 
-        {/* Button */}
+        {/* Action */}
         <Button
           block
           className="h-11 rounded-lg border-none"
-          color="default"
           variant="solid"
+          color="default"
         >
           Back to Login
         </Button>
