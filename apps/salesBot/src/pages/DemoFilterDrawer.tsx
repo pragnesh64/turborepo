@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import FilterDrawer from "./../../node_modules/@my-monorepo/shared/src/components/overlay/FilterDrawer/index";
 import {
-  FilterModel,
+  FilterModelType,
   GridColumns,
 } from "./../../node_modules/@my-monorepo/shared/src/components/overlay/FilterDrawer/type";
 import ViewDrawer from "./../../../../packages/shared/src/components/overlay/ViewDrawer/index";
 import Button from "@shared/components/primitives/Button";
+
+// TODO: Demo only – remove this component when used in actual implementation
 
 export const columnsList = [
   {
@@ -379,14 +381,14 @@ const DemoFilterDrawer = () => {
         Open Filter Drawer
       </Button>
       <FilterDrawer
-        onClear={() => console.log("Clear Filter")}
+        onClear={() => {}}
         open={isFilterOpen}
         onClose={() =>onCloseFilter()}
         onApply={() => {
-          console.log("Apply Filter");
           setIsFilterOpen(false);
         }}
-        onChangeFilter={(newModel: FilterModel) => console.log(newModel)}
+        // TODO: Demo purpose only – console.log added temporarily for testing filter output
+        onChangeFilter={(newModel: FilterModelType) => console.log(newModel)}
         columns={columns}
       />
       <Button

@@ -72,6 +72,7 @@ function Dashboard() {
           })) || []
         }
       /> */}
+      {/* // TODO: Demo only – remove this component when used in actual implementation */}
       <DemoFilterDrawer/>
     </>
   );

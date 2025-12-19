@@ -30,11 +30,11 @@ const FilterDrawer: React.FC<FilterDrawerProps> = ({
   }, [columns]);
 
   /* ---------------- states ---------------- */
-  const [selectedColumn, setSelectedColumn] = useState<any>(null);
+  const [selectedColumn, setSelectedColumn] = useState<OptionType | null>(null);
   const [selectedOperator, setSelectedOperator] = useState<OptionType | null>(
     null
   );
-  const [filterValue, setFilterValue] = useState("");
+  const [filterValue, setFilterValue] = useState<string>("");
   const [startValue, setStartValue] = useState("");
   const [endValue, setEndValue] = useState("");
 
@@ -90,7 +90,7 @@ const FilterDrawer: React.FC<FilterDrawerProps> = ({
       setEndValue(end?.split("T")[0] || "");
       setFilterValue("");
     } else {
-      setFilterValue(item.value ?? "");
+      setFilterValue(String(item.value) ?? "");
       setStartValue("");
       setEndValue("");
     }
@@ -104,66 +104,78 @@ const FilterDrawer: React.FC<FilterDrawerProps> = ({
   const operatorOptions =
     OPERATOR_MAP[selectedColumnType] || OPERATOR_MAP.string;
 
-  const handleApply = () => {
-    const newErrors = { column: "", operator: "", value: "", range: "" };
-    let hasError = false;
+ const handleApply = () => {
+  const newErrors = { column: "", operator: "", value: "", range: "" };
+  let hasError = false;
 
-    if (!selectedColumn?.Id) {
-      newErrors.column = "Please select a column.";
-      hasError = true;
-    }
+  if (!selectedColumn?.Id) {
+    newErrors.column = "Please select a column.";
+    hasError = true;
+  }
 
-    if (!selectedOperator?.Id) {
-      newErrors.operator = "Please select an operator.";
-      hasError = true;
-    }
+  if (!selectedOperator?.Id) {
+    newErrors.operator = "Please select an operator.";
+    hasError = true;
+  }
 
-    const op = selectedOperator?.Id;
+  const op = selectedOperator?.Id as FilterOperator | undefined;
 
-    if (op === FilterOperator.Between || op === FilterOperator.NotBetween) {
-      if (!startValue || !endValue) {
-        newErrors.range = "Please fill both values.";
-        hasError = true;
-      }
-    } else if (selectedColumnType !== "boolean" && filterValue === "") {
-      newErrors.value = "Please enter a value.";
-      hasError = true;
-    }
-
+  if (!op) {
     setErrors(newErrors);
-    if (hasError) return;
+    return;
+  }
 
-    if (op === FilterOperator.Between || op === FilterOperator.NotBetween) {
-      const start =
-        selectedColumnType === "date" ? `${startValue}T00:00:00Z` : startValue;
-
-      const end =
-        selectedColumnType === "date" ? `${endValue}T23:59:59Z` : endValue;
-
-      onChangeFilter({
-        items: [
-          {
-            field: selectedColumn.Id,
-            operator: op,
-            value: [start, end],
-          },
-        ],
-      });
-    } else {
-      onChangeFilter({
-        items: [
-          {
-            field: selectedColumn.Id,
-            operator: op,
-            value: filterValue,
-          },
-        ],
-      });
+  if (op === FilterOperator.Between || op === FilterOperator.NotBetween) {
+    if (!startValue || !endValue) {
+      newErrors.range = "Please fill both values.";
+      hasError = true;
     }
+  } else if (selectedColumnType !== "boolean" && filterValue === "") {
+    newErrors.value = "Please enter a value.";
+    hasError = true;
+  }
 
-    onApply();
-    onClose();
-  };
+  setErrors(newErrors);
+  if (hasError) return;
+
+  if (!selectedColumn) return;
+
+  if (op === FilterOperator.Between || op === FilterOperator.NotBetween) {
+    const start =
+      selectedColumnType === "date"
+        ? `${startValue}T00:00:00Z`
+        : startValue;
+
+    const end =
+      selectedColumnType === "date"
+        ? `${endValue}T23:59:59Z`
+        : endValue;
+
+    onChangeFilter({
+      items: [
+        {
+          field: selectedColumn.Id,
+          operator: op,
+          value: [start, end],
+        },
+      ],
+    });
+  } else {
+    onChangeFilter({
+      items: [
+        {
+          field: selectedColumn.Id,
+          operator: op,
+          value: filterValue,
+        },
+      ],
+    });
+  }
+
+  onApply();
+  onClose();
+};
+
 
   const handleClear = () => {
     setSelectedColumn(null);

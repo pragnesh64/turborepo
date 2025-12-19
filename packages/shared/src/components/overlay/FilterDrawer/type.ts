@@ -1,3 +1,4 @@
+import { FilterOperator } from "./contact";
 
 export type FilterValue =
   | string
@@ -5,16 +6,15 @@ export type FilterValue =
   | boolean
   | (string | number)[];
 
-export interface FilterItem {
+export interface FilterItemType {
   field: string;
-  operator: string;
-  value?: FilterValue;
+  operator: FilterOperator;
+  value: string | string[];
 }
 
-export interface FilterModel {
-  items: FilterItem[];
+export interface FilterModelType {
+  items: FilterItemType[];
 }
-
 
 export interface FilterDrawerProps {
   open: boolean;
@@ -24,9 +24,8 @@ export interface FilterDrawerProps {
   placement?: "left" | "right" | "top" | "bottom";
   width?: number;
   columns: GridColumns[];
-  filterModel?: any;
-  onChangeFilter: (model: any) => void;
-  // onChangeFilter?: any;
+  filterModel?: FilterModelType;
+  onChangeFilter: (model: FilterModelType) => void;
   onClear: () => void;
 }
 
