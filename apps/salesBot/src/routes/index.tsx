@@ -1,15 +1,22 @@
 import { Route, Routes } from "react-router-dom";
 import Dashboard from "../pages/Dashboard";
-import Register from "../pages/Register";
+import Login from "../pages/Login";
+import ForgotPassword from "../pages/ForgotPassword";
+import OtpVerification from "../pages/OtpVerification";
+import CheckYourEmail from "../pages/CheckYourEmail";
+import SetNewPassword from "../pages/SetNewPassword";
 
 const AppRoutes = () => {
-    return (
-        <Routes>
-            <Route index element={<Dashboard />} />
-            <Route path="/register" element={<Register />} />
-        </Routes>
-    );
+  return (
+    <Routes>
+      {/* <Route index element={<Dashboard />} /> */}
+      {/* <Route index element={<Login />} /> */}
+      {/* <Route index element={<ForgotPassword />} /> */}
+      {/* <Route index element={<OtpVerification />} /> */}
+      {/* <Route index element={<CheckYourEmail />} /> */}
+      <Route index element={<SetNewPassword />} />
+    </Routes>
+  );
 };
 
 export default AppRoutes;
-

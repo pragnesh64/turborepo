@@ -5,7 +5,7 @@ import salesboxtextlogo from "@shared/assets/images/salesboxtextlogo.png";
 import helloicon from "@shared/assets/images/helloicon.png";
 import { RegisterStepCompleteIcon } from "@shared/assets/icons/RegisterStepCompleteIcon";
 import Button from "@shared/components/primitives/Button";
-import OnboardingWrapper from "../../components/OnboardingWrapper";
+import OnboardingWrapper from "../../../../../packages/shared/src/components/layout/OnboardingWrapper";
 
 const { Title, Text, Link } = Typography;
 

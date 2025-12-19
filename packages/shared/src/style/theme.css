@@ -4,17 +4,74 @@
 @source "../../packages/shared/src/**/*.{js,ts,jsx,tsx}";
 
 :root {
-  /* Colors */
-  --aniket: #b6aa00;
-  --color-primary-hover: #4338ca;
-  --color-secondary: #f97316;
-  --color-secondary-hover: #ea580c;
-  --color-success: #22c55e;
-  --color-danger: #ef4444;
-  --color-muted: #6b7280;
-  --color-white: #ffffff;
-  --color-black: #000000;
+  /* ===============================
+     GRADIENT
+  =============================== */
+  --gradient-primary: linear-gradient(
+    135deg,
+    #ec4899 0%,
+    #8b5cf6 50%,
+    #f59e0b 100%
+  );
 
+  --gradient-border: linear-gradient(
+    89.89deg,
+    #35a1da 0.24%,
+    #857bbd 25.46%,
+    #e8584b 50.67%,
+    #584f9e 75.88%,
+    #ce4c9b 101.09%
+  );
+  --gradient-link-color: linear-gradient(
+    91.11deg,
+    #9673e9 0.3%,
+    #c558e5 29.11%,
+    #ec9c75 57.17%,
+    #ec7b5c 76.66%,
+    #e9ae89 98.87%
+  );
+
+  /* ===============================
+     NEUTRALS (Dark → Light)
+  =============================== */
+  --neutral-900: #111827;
+  --neutral-800: #1f2937;
+  --neutral-700: #374151;
+  --neutral-600: #4b5563;
+  --neutral-500: #6b7280;
+  --neutral-400: #9ca3af;
+  --neutral-300: #d1d5db;
+  --neutral-200: #e5e7eb;
+  --neutral-100: #f3f4f6;
+  --neutral-50: #f9fafb;
+
+  /* ===============================
+     GENERIC COLORS
+  =============================== */
+  --black: #000000;
+  --white: #ffffff;
+
+  /* ===============================
+     BRAND / ACCENT
+  =============================== */
+  --purple-500: #8b5cf6;
+
+  /* ===============================
+     STATUS COLORS
+  =============================== */
+  --error-500: #ef4444;
+  --error-100: #fee2e2;
+
+  --warning-500: #fbbf24;
+  --warning-100: #fef3c7;
+
+  --success-500: #16a34a;
+  --success-100: #dcfce7;
+
+  --bg-F4F2F1: #f4f2f1;
+  --input-border: 1px solid #9da3af;
+  --ant-btn-border-color-hover: var(--color-black);
+  --color-primary: var(--black);
   /* Background Colors */
   --btn-bg-primary: var(--color-primary);
   --btn-bg-primary-hover: var(--color-primary-hover);

@@ -5,7 +5,7 @@ import "@my-monorepo/shared/src/style/theme.css";
 import "@my-monorepo/shared/src/styles.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
-import { AlertProvider } from "@shared/context";
+import { AlertProvider, AntTheamProvider } from "@shared/context";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -19,11 +19,13 @@ const queryClient = new QueryClient({
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <AlertProvider>
-          <App />
-        </AlertProvider>
-      </BrowserRouter>
+      <AntTheamProvider>
+        <BrowserRouter>
+          <AlertProvider>
+            <App />
+          </AlertProvider>
+        </BrowserRouter>
+      </AntTheamProvider>
     </QueryClientProvider>
   </React.StrictMode>
 );

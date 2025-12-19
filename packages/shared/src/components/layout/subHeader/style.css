@@ -1,0 +1,8 @@
+.ant-btn:hover {
+  border-color: var(--color-black) !important;
+  color: var(--color-black) !important;
+}
+
+.ant-btn-primary {
+  background-color: var(--color-black) !important;
+}

@@ -1,2 +1,8 @@
 @import "tailwindcss";
 
+.text-gradient {
+  background-image: var(--gradient-link-color);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}

@@ -1,5 +1,5 @@
 import React from "react";
-import onboardbg from "@shared/assets/images/onboardbg.png";
+import onboardbg from "../../../assets/images/onboardbg.png";
 
 const gradient =
   "linear-gradient(89.89deg, #35A1DA 0.24%, #857BBD 25.46%, #E8584B 50.67%, #584F9E 75.88%, #CE4C9B 101.09%)";
@@ -24,7 +24,7 @@ const OnboardingWrapper = ({
       <div
         className="w-full rounded-[30px] p-[2px] flex"
         style={{
-          maxWidth, 
+          maxWidth,
           background: gradient,
         }}
       >

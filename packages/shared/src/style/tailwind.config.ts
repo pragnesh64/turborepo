@@ -1,16 +1,50 @@
 import type { Config } from "tailwindcss";
 
-/**
- * Shared Tailwind v4 configuration
- *
- * This config can be extended by individual apps to add app-specific content paths.
- * Tailwind v4 uses CSS-based configuration, so most theme customization is done
- * in theme.css using CSS custom properties.
- */
-const sharedConfig: Config = {
-  // Tailwind v4 uses CSS-based configuration primarily
-  // Content paths should be specified in each app's tailwind.config.ts
-  // Theme customization is done via CSS variables in theme.css
+const config: Config = {
+  content: ["../../apps/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
+  theme: {
+    extend: {
+      colors: {
+        /* Neutrals */
+        neutral: {
+          900: "var(--neutral-900)",
+          800: "var(--neutral-800)",
+          700: "var(--neutral-700)",
+          600: "var(--neutral-600)",
+          500: "var(--neutral-500)",
+          400: "var(--neutral-400)",
+          300: "var(--neutral-300)",
+          200: "var(--neutral-200)",
+          100: "var(--neutral-100)",
+          50: "var(--neutral-50)",
+        },
+
+        /* Generic */
+        black: "var(--black)",
+        white: "var(--white)",
+
+        /* Brand */
+        purple: {
+          500: "var(--purple-500)",
+        },
+
+        /* Status */
+        error: {
+          500: "var(--error-500)",
+          100: "var(--error-100)",
+        },
+        warning: {
+          500: "var(--warning-500)",
+          100: "var(--warning-100)",
+        },
+        success: {
+          500: "var(--success-500)",
+          100: "var(--success-100)",
+        },
+      },
+    },
+  },
+  plugins: [],
 };
 
-export default sharedConfig;
+export default config;
