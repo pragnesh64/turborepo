@@ -20,16 +20,15 @@ export interface FilterDrawerProps {
   open: boolean;
   onClose: () => void;
   onApply: () => void;
-  title?: string;
-  placement?: "left" | "right" | "top" | "bottom";
-  width?: number;
+  title: string;
+  placement: "left" | "right" | "top" | "bottom";
   columns: GridColumns[];
-  filterModel?: FilterModelType;
+  filterModel: FilterModelType;
   onChangeFilter: (model: FilterModelType) => void;
   onClear: () => void;
+  width?: number;
 }
 
-// ================ Types ================
 export type DataType = "string" | "number" | "date" | "boolean";
 
 
@@ -45,7 +44,6 @@ export interface ColumnFilterOperator {
   label: string;
   value: string;
 }
-
 
 export interface GridColumns {
   field: string;

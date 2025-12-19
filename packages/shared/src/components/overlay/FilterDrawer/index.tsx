@@ -219,14 +219,14 @@ const FilterDrawer: React.FC<FilterDrawerProps> = ({
 
           <Button
             onclick={handleApply}
-            className="w-1/2 h-10 rounded-lg !bg-black hover:bg-black"
+            className="w-1/2 h-10 rounded-lg bg-black! hover:bg-black"
           >
             Apply Filter
           </Button>
         </div>
       }
     >
-      <h1 className="mb-4 font-inter text-[22px] leading-[28px] font-medium tracking-[-0.02em] text-black">
+      <h1 className="mb-4 font-inter text-[22px] leading-7 font-medium tracking-[-0.02em] text-black">
         {title}
       </h1>
 
