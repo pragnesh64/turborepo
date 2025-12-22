@@ -1,222 +1,529 @@
-import { useState, useEffect, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useState } from "react";
+// import { useLocation, useNavigate } from "react-router-dom";
+// import {
+//   Box,
+//   List,
+//   ListItemButton,
+//   ListItemIcon,
+//   ListItemText,
+//   Collapse,
+//   Typography,
+//   IconButton,
+// } from "@mui/material";
+// import {
+//   Home,
+//   People,
+//   MenuBook,
+//   Inventory,
+//   Extension,
+//   Settings,
+//   SportsEsports,
+//   Chat,
+//   Description,
+//   Campaign,
+//   PersonSearch,
+//   ManageAccounts,
+//   ExpandMore,
+//   ChevronRight,
+//   Logout,
+//   MenuOpen,
+// } from "@mui/icons-material";
+
+// interface SidebarItem {
+//   key: string;
+//   label: string;
+//   icon: React.ComponentType<{
+//     className?: string;
+//     fontSize?: "small" | "medium";
+//   }>;
+//   path?: string;
+//   children?: { key: string; label: string; path: string }[];
+// }
+
+// const sidebarItems: SidebarItem[] = [
+//   { key: "home", label: "Home", icon: Home, path: "/" },
+//   {
+//     key: "contact",
+//     label: "Contact",
+//     icon: People,
+//     children: [
+//       { key: "contact-list", label: "Contact List", path: "/contact/list" },
+//       { key: "contact-groups", label: "Groups", path: "/contact/groups" },
+//     ],
+//   },
+//   {
+//     key: "knowledge-base",
+//     label: "Knowledge Base",
+//     icon: MenuBook,
+//     path: "/knowledge-base",
+//   },
+//   { key: "product", label: "Product", icon: Inventory, path: "/product" },
+//   {
+//     key: "integration",
+//     label: "Integration",
+//     icon: Extension,
+//     path: "/integration",
+//   },
+//   {
+//     key: "agent-config",
+//     label: "Agent Configuration",
+//     icon: Settings,
+//     path: "/agent-configuration",
+//   },
+//   {
+//     key: "playground",
+//     label: "Playground",
+//     icon: SportsEsports,
+//     path: "/playground",
+//   },
+//   {
+//     key: "conversations",
+//     label: "Conversations",
+//     icon: Chat,
+//     children: [
+//       { key: "conv-active", label: "Active", path: "/conversations/active" },
+//       {
+//         key: "conv-archived",
+//         label: "Archived",
+//         path: "/conversations/archived",
+//       },
+//     ],
+//   },
+//   {
+//     key: "templates",
+//     label: "Templates",
+//     icon: Description,
+//     children: [
+//       { key: "templates-email", label: "Email", path: "/templates/email" },
+//       { key: "templates-sms", label: "SMS", path: "/templates/sms" },
+//     ],
+//   },
+//   {
+//     key: "campaign",
+//     label: "Campaign",
+//     icon: Campaign,
+//     children: [
+//       { key: "campaign-active", label: "Active", path: "/campaign/active" },
+//       { key: "campaign-draft", label: "Drafts", path: "/campaign/draft" },
+//     ],
+//   },
+//   {
+//     key: "lead-management",
+//     label: "Lead Management",
+//     icon: PersonSearch,
+//     children: [
+//       { key: "leads-all", label: "All Leads", path: "/leads/all" },
+//       { key: "leads-qualified", label: "Qualified", path: "/leads/qualified" },
+//     ],
+//   },
+//   {
+//     key: "user-management",
+//     label: "User Management",
+//     icon: ManageAccounts,
+//     children: [
+//       { key: "users-all", label: "All Users", path: "/users/all" },
+//       { key: "users-roles", label: "Roles", path: "/users/roles" },
+//     ],
+//   },
+// ];
+
+// interface AppSidebarProps {
+//   collapsed: boolean;
+//   onToggle: () => void;
+//   onMenuClick?: () => void;
+// }
+
+// const AppSidebar = ({ collapsed, onToggle, onMenuClick }: AppSidebarProps) => {
+//   const location = useLocation();
+//   const navigate = useNavigate();
+//   const [openKeys, setOpenKeys] = useState<string[]>([]);
+
+//   const isActive = (item: SidebarItem): boolean => {
+//     if (item.path && location.pathname === item.path) return true;
+//     if (item.children) {
+//       return item.children.some((child) => location.pathname === child.path);
+//     }
+//     return false;
+//   };
+
+//   const handleItemClick = (item: SidebarItem) => {
+//     if (item.children) {
+//       setOpenKeys((prev) =>
+//         prev.includes(item.key)
+//           ? prev.filter((k) => k !== item.key)
+//           : [...prev, item.key]
+//       );
+//     } else if (item.path) {
+//       navigate(item.path);
+//       onMenuClick?.();
+//     }
+//   };
+
+//   const handleChildClick = (path: string) => {
+//     navigate(path);
+//     onMenuClick?.();
+//   };
+
+//   return (
+//     <Box
+//       sx={{
+//         width: collapsed ? 56 : 250,
+//         backgroundColor: "background.paper",
+//         borderRight: 1,
+//         borderColor: "divider",
+//         transition: "width 200ms ease",
+//         display: "flex",
+//         flexDirection: "column",
+//         height: "full",
+//       }}
+//     >
+//       {/* Header */}
+//       <Box
+//         sx={{
+//           display: "flex",
+//           justifyContent: collapsed ? "center" : "space-between",
+//           alignItems: "center",
+//           padding: 2,
+//           borderBottom: 1,
+//           borderColor: "divider",
+//         }}
+//       >
+//         <Box sx={{ display: "flex", alignItems: "center" }}>
+//           <Box
+//             sx={{
+//               width: 36,
+//               height: 36,
+//               borderRadius: "50%",
+//               backgroundColor: "primary.main",
+//               display: "flex",
+//               justifyContent: "center",
+//               alignItems: "center",
+//             }}
+//           >
+//             <Typography
+//               variant="body2"
+//               sx={{ color: "white", fontWeight: 600 }}
+//             >
+//               QB
+//             </Typography>
+//           </Box>
+//           {!collapsed && (
+//             <Typography variant="h6" sx={{ marginLeft: 2 }}>
+//               Sales bot
+//             </Typography>
+//           )}
+//         </Box>
+//         {!collapsed && (
+//           <IconButton onClick={onToggle}>
+//             <MenuOpen />
+//           </IconButton>
+//         )}
+//       </Box>
+
+//       {/* Navigation Items */}
+//       <Box sx={{ flex: 1, overflowY: "auto" }}>
+//         <List>
+//           {sidebarItems.map((item) => {
+//             const Icon = item.icon;
+//             const active = isActive(item);
+//             const isOpen = openKeys.includes(item.key);
+
+//             return (
+//               <Box key={item.key}>
+//                 <ListItemButton onClick={() => handleItemClick(item)}>
+//                   <ListItemIcon
+//                     sx={{
+//                       minWidth: collapsed ? 0 : 40,
+//                       justifyContent: "center",
+//                     }}
+//                   >
+//                     <Box sx={{ fontSize: 20, color: "inherit" }}>
+//                       <Icon />
+//                     </Box>
+//                   </ListItemIcon>
+
+//                   {!collapsed && (
+//                     <>
+//                       <ListItemText
+//                         primary={item.label}
+//                         primaryTypographyProps={{
+//                           fontWeight: active ? 600 : 500,
+//                           fontSize: 14,
+//                         }}
+//                       />
+//                       {item.children &&
+//                         (isOpen ? <ExpandMore /> : <ChevronRight />)}
+//                     </>
+//                   )}
+//                 </ListItemButton>
+
+//                 {/* Submenu (Children) */}
+//                 {item.children && !collapsed && (
+//                   <Collapse in={isOpen} timeout="auto" unmountOnExit>
+//                     <List sx={{ pl: 4 }}>
+//                       {item.children.map((child) => (
+//                         <ListItemButton
+//                           key={child.key}
+//                           onClick={() => handleChildClick(child.path)}
+//                           sx={{
+//                             backgroundColor:
+//                               location.pathname === child.path
+//                                 ? "primary.light"
+//                                 : "transparent",
+//                           }}
+//                         >
+//                           <ListItemText
+//                             primary={child.label}
+//                             primaryTypographyProps={{
+//                               fontWeight:
+//                                 location.pathname === child.path ? 600 : 400,
+//                               fontSize: 14,
+//                             }}
+//                           />
+//                         </ListItemButton>
+//                       ))}
+//                     </List>
+//                   </Collapse>
+//                 )}
+//               </Box>
+//             );
+//           })}
+//         </List>
+//       </Box>
+
+//       {/* Logout */}
+//       <Box sx={{ padding: 2, borderTop: 1, borderColor: "divider" }}>
+//         <ListItemButton sx={{ color: "error.main" }}>
+//           {!collapsed && (
+//             <ListItemText
+//               primary="Log Out"
+//               primaryTypographyProps={{
+//                 fontWeight: 600,
+//                 fontSize: 14,
+//               }}
+//             />
+//           )}
+//           <ListItemIcon sx={{ minWidth: collapsed ? 0 : "auto" }}>
+//             <Logout />
+//           </ListItemIcon>
+//         </ListItemButton>
+//       </Box>
+//     </Box>
+//   );
+// };
+
+// export default AppSidebar;
+
 import {
-  Drawer,
+  Box,
   List,
-  ListItem,
+  ListItemButton,
   ListItemIcon,
   ListItemText,
-  Collapse,
   IconButton,
   Typography,
-  Box,
 } from "@mui/material";
 import {
+  Home,
+  People,
+  MenuBook,
+  Inventory,
+  Extension,
+  Settings,
+  SportsEsports,
+  Chat,
+  Description,
+  Campaign,
+  PersonSearch,
+  ManageAccounts,
   Logout,
-  ChevronRight,
-  ChevronLeft,
-  ExpandMore,
-  ExpandLess,
+  MenuOpen,
 } from "@mui/icons-material";
-import { SidebarIcon } from "@shared/components/icons/sidebaricon"; // Replace with appropriate icon import
-import { Logout as LogoutIcon } from "@mui/icons-material"; // Adjust import if necessary
-import { IntoAiPartnerLogo } from "@shared/components/icons/intoaiPartnerlogo"; // Replace with your actual logo import
-import { ProfileImg } from "@shared/assets"; // Your profile image import
 
-interface SidebarItemType {
-  key: string;
-  label: string;
-  icon: React.ReactNode;
-  path?: string;
-  children?: SidebarItemType[];
-}
-
-interface SidebarProps {
-  collapsed: boolean;
-  onMenuClick?: () => void;
-  sidebarItems: SidebarItemType[];
-  showHeader?: boolean;
-}
-
-const Sidebar = ({
-  collapsed,
-  onMenuClick,
-  sidebarItems,
-  showHeader = true,
-}: SidebarProps) => {
-  const navigate = useNavigate();
-  const [selectedKey, setSelectedKey] = useState<string>("home");
-  const [openKeys, setOpenKeys] = useState<string[]>([]);
-
-  // Memoizing sidebar items
-  const items = useMemo(() => {
-    return sidebarItems.map((item) => {
-      if (item.children && item.children.length > 0) {
-        return {
-          ...item,
-          children: item.children.map((child) => ({
-            ...child,
-          })),
-        };
-      }
-      return item;
-    });
-  }, [sidebarItems]);
-
-  const isParentMenu = (key: string): boolean => {
-    const menu = items.find((item) => item.key === key);
-    return menu?.children && menu.children.length > 0;
-  };
-
-  const handleMenuClick = (key: string) => {
-    if (isParentMenu(key)) {
-      setOpenKeys((prevKeys) =>
-        prevKeys.includes(key)
-          ? prevKeys.filter((k) => k !== key)
-          : [...prevKeys, key]
-      );
-    } else {
-      setSelectedKey(key);
-      const clickedItem = items.find((item) => item.key === key);
-      if (clickedItem?.path) {
-        navigate(clickedItem.path);
-      }
-    }
-    if (onMenuClick) {
-      onMenuClick();
-    }
-  };
-
-  const handleToggleCollapse = (key: string) => {
-    setOpenKeys((prevKeys) =>
-      prevKeys.includes(key)
-        ? prevKeys.filter((k) => k !== key)
-        : [...prevKeys, key]
-    );
-  };
+const AppSidebar = ({ collapsed, onToggle, onMenuClick }: any) => {
+  const sidebarItems = [
+    { key: "home", label: "Home", icon: Home, path: "/" },
+    {
+      key: "contact",
+      label: "Contact",
+      icon: People,
+      children: [
+        { key: "contact-list", label: "Contact List", path: "/contact/list" },
+        { key: "contact-groups", label: "Groups", path: "/contact/groups" },
+      ],
+    },
+    {
+      key: "knowledge-base",
+      label: "Knowledge Base",
+      icon: MenuBook,
+      path: "/knowledge-base",
+    },
+    { key: "product", label: "Product", icon: Inventory, path: "/product" },
+    {
+      key: "integration",
+      label: "Integration",
+      icon: Extension,
+      path: "/integration",
+    },
+    {
+      key: "agent-config",
+      label: "Agent Configuration",
+      icon: Settings,
+      path: "/agent-configuration",
+    },
+    {
+      key: "playground",
+      label: "Playground",
+      icon: SportsEsports,
+      path: "/playground",
+    },
+    {
+      key: "conversations",
+      label: "Conversations",
+      icon: Chat,
+      children: [
+        { key: "conv-active", label: "Active", path: "/conversations/active" },
+        {
+          key: "conv-archived",
+          label: "Archived",
+          path: "/conversations/archived",
+        },
+      ],
+    },
+    {
+      key: "templates",
+      label: "Templates",
+      icon: Description,
+      children: [
+        { key: "templates-email", label: "Email", path: "/templates/email" },
+        { key: "templates-sms", label: "SMS", path: "/templates/sms" },
+      ],
+    },
+    {
+      key: "campaign",
+      label: "Campaign",
+      icon: Campaign,
+      children: [
+        { key: "campaign-active", label: "Active", path: "/campaign/active" },
+        { key: "campaign-draft", label: "Drafts", path: "/campaign/draft" },
+      ],
+    },
+    {
+      key: "lead-management",
+      label: "Lead Management",
+      icon: PersonSearch,
+      children: [
+        { key: "leads-all", label: "All Leads", path: "/leads/all" },
+        {
+          key: "leads-qualified",
+          label: "Qualified",
+          path: "/leads/qualified",
+        },
+      ],
+    },
+    {
+      key: "user-management",
+      label: "User Management",
+      icon: ManageAccounts,
+      children: [
+        { key: "users-all", label: "All Users", path: "/users/all" },
+        { key: "users-roles", label: "Roles", path: "/users/roles" },
+      ],
+    },
+  ];
 
   return (
-    <Drawer
-      variant="permanent"
+    <Box
       sx={{
         width: collapsed ? 56 : 250,
-        flexShrink: 0,
-        "& .MuiDrawer-paper": {
-          width: collapsed ? 56 : 250,
-          transition: "width 0.2s ease-in-out",
-        },
+        backgroundColor: "background.paper",
+        borderRight: 1,
+        borderColor: "divider",
+        transition: "width 200ms ease",
+        display: "flex",
+        flexDirection: "column",
+        height: "full",
       }}
     >
-      <Box sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
-        {showHeader && (
+      {/* Header */}
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: collapsed ? "center" : "space-between",
+          alignItems: "center",
+          padding: 2,
+        }}
+      >
+        <Box sx={{ display: "flex", alignItems: "center" }}>
           <Box
             sx={{
+              width: 36,
+              height: 36,
+              borderRadius: "50%",
+              backgroundColor: "primary.main",
               display: "flex",
+              justifyContent: "center",
               alignItems: "center",
-              gap: 2,
-              padding: collapsed ? "10px 0" : "10px 16px",
-              backgroundColor: "white",
             }}
           >
-            <Box
-              sx={{
-                width: 35,
-                height: 35,
-                borderRadius: "50%",
-                background:
-                  "linear-gradient(to right, #35A1DA, #D4549F, #F15A22)",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Typography
-                variant="h6"
-                sx={{ color: "white", fontWeight: "bold" }}
-              >
-                QB
-              </Typography>
-            </Box>
-            {!collapsed && (
-              <Typography variant="h6" sx={{ fontWeight: 600 }}>
-                Sales bot
-              </Typography>
-            )}
-          </Box>
-        )}
-
-        <List sx={{ flexGrow: 1, overflowY: "auto" }}>
-          {items.map((item) => (
-            <Box key={item.key}>
-              <ListItem
-                button
-                onClick={() => handleMenuClick(item.key)}
-                selected={item.key === selectedKey}
-                sx={{ paddingLeft: collapsed ? 1 : 3 }}
-              >
-                <ListItemIcon>{item.icon}</ListItemIcon>
-                {!collapsed && <ListItemText primary={item.label} />}
-                {isParentMenu(item.key) && (
-                  <IconButton onClick={() => handleToggleCollapse(item.key)}>
-                    {openKeys.includes(item.key) ? (
-                      <ExpandLess />
-                    ) : (
-                      <ExpandMore />
-                    )}
-                  </IconButton>
-                )}
-              </ListItem>
-              {item.children && (
-                <Collapse
-                  in={openKeys.includes(item.key)}
-                  timeout="auto"
-                  unmountOnExit
-                >
-                  <List component="div" disablePadding>
-                    {item.children.map((child) => (
-                      <ListItem
-                        key={child.key}
-                        button
-                        sx={{ paddingLeft: collapsed ? 4 : 6 }}
-                        onClick={() => handleMenuClick(child.key)}
-                        selected={child.key === selectedKey}
-                      >
-                        <ListItemIcon>{child.icon}</ListItemIcon>
-                        {!collapsed && <ListItemText primary={child.label} />}
-                      </ListItem>
-                    ))}
-                  </List>
-                </Collapse>
-              )}
-            </Box>
-          ))}
-        </List>
-
-        <Box
-          sx={{
-            padding: collapsed ? "8px" : "16px",
-            backgroundColor: "white",
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: collapsed ? "center" : "space-between",
-            borderTop: "1px solid #ddd",
-          }}
-          onClick={() => handleMenuClick("logout")}
-        >
-          {!collapsed && (
             <Typography
               variant="body2"
-              sx={{ color: "red", fontWeight: "bold" }}
+              sx={{ color: "white", fontWeight: 600 }}
             >
-              Log Out
+              QB
+            </Typography>
+          </Box>
+          {!collapsed && (
+            <Typography variant="h6" sx={{ marginLeft: 2 }}>
+              Sales bot
             </Typography>
           )}
-          <LogoutIcon sx={{ color: "red" }} />
         </Box>
+        {!collapsed && (
+          <IconButton onClick={onToggle}>
+            <MenuOpen />
+          </IconButton>
+        )}
       </Box>
-    </Drawer>
+
+      {/* Navigation Items */}
+      <Box sx={{ flex: 1, overflowY: "auto" }}>
+        <List>
+          {sidebarItems.map((item) => {
+            const Icon = item.icon;
+            return (
+              <Box key={item.key}>
+                <ListItemButton onClick={() => onMenuClick(item)}>
+                  <ListItemIcon
+                    sx={{
+                      minWidth: collapsed ? 0 : 40,
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Icon />
+                  </ListItemIcon>
+                  {!collapsed && <ListItemText primary={item.label} />}
+                </ListItemButton>
+              </Box>
+            );
+          })}
+        </List>
+      </Box>
+
+      {/* Logout */}
+      <Box sx={{ padding: 2, borderTop: 1, borderColor: "divider" }}>
+        <ListItemButton
+          sx={{ color: "error.main" }}
+          onClick={() => console.log("Log Out")}
+        >
+          {!collapsed && <ListItemText primary="Log Out" />}
+          <ListItemIcon sx={{ minWidth: collapsed ? 0 : "auto" }}>
+            <Logout />
+          </ListItemIcon>
+        </ListItemButton>
+      </Box>
+    </Box>
   );
 };
 
-export default Sidebar;
+export default AppSidebar;

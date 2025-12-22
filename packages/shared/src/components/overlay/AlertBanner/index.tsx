@@ -1,58 +1,49 @@
-import { Button, IconButton, Box, Typography } from "@mui/material";
-import { Close as CloseIcon } from "@mui/icons-material";
+import { Close } from "@mui/icons-material";
+import { Box, Button, IconButton, Typography } from "@mui/material";
 
-interface Props {
+interface AlertBannerProps {
   onClose: () => void;
 }
 
-const AlertBanner = ({ onClose }: Props) => {
+const AlertBanner = ({ onClose }: AlertBannerProps) => {
   return (
     <Box
+      className="relative w-full h-12 flex items-center justify-between px-6"
       sx={{
-        width: "100%",
-        height: "48px", // 12 * 4px = 48px (same height as in the original)
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        px: 2, // padding-left and padding-right
-        backgroundColor: "var(--bg-alert)", // Apply background color from CSS variable
+        background:
+          "linear-gradient(91.11deg, #9673e9 0.3%, #c558e5 29.11%, #ec9c75 57.17%, #ec7b5c 76.66%, #e9ae89 98.87%)",
       }}
     >
       <Box />
-      <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-        <Typography variant="body2" sx={{ color: "white", fontWeight: 500 }}>
+
+      <Box className="flex items-center gap-4">
+        <Typography className="text-white text-sm font-medium">
           14 days left in your plan
         </Typography>
+
         <Button
           variant="contained"
-          color="primary"
+          className="bg-white text-purple-600 text-primary hover:bg-white/90 shadow-sm h-8 px-4 font-medium text-sm normal-case"
           sx={{
             backgroundColor: "white",
-            color: "purple",
-            boxShadow: 1,
-            borderRadius: "4px",
+            color: "#9333ea",
+            "&:hover": { backgroundColor: "rgba(255,255,255,0.9)" },
+            textTransform: "none",
             fontWeight: 500,
-            "&:hover": {
-              backgroundColor: "#f5f5f5",
-            },
-            height: "32px", // Same height as in the original
-            padding: "0 16px",
           }}
         >
           Upgrade your plan
         </Button>
       </Box>
+
       <IconButton
         onClick={onClose}
-        sx={{
-          color: "white",
-          "&:hover": {
-            color: "rgba(255, 255, 255, 0.7)", // Slightly lighter on hover
-          },
-        }}
+        className="text-white hover:text-gray-200 cursor-pointer p-1 flex items-center justify-center"
         aria-label="Close"
+        size="small"
+        sx={{ color: "rgba(255,255,255,0.8)", "&:hover": { color: "white" } }}
       >
-        <CloseIcon />
+        <Close fontSize="small" />
       </IconButton>
     </Box>
   );

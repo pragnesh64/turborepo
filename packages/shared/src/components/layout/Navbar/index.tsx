@@ -8,7 +8,6 @@ import {
   ExitToApp as ExitToAppIcon,
   Notifications as NotificationsIcon,
   HelpOutline as HelpOutlineIcon,
-  ArrowDropDown as ArrowDropDownIcon,
 } from "@mui/icons-material";
 import {
   AppBar,
@@ -22,8 +21,8 @@ import {
   Box,
   Typography,
 } from "@mui/material";
-import { IntoAiPartnerLogo } from "@shared/components/icons/intoaiPartnerlogo";
-import { ProfileImg } from "@shared/assets";
+import { IntoAiPartnerLogo } from "@shared/assets/icons/index";
+import { ProfileImg } from "@shared/assets/index";
 
 interface MenuItemType {
   label: string;
@@ -38,6 +37,9 @@ const Navbar = ({ menus }: { menus: MenuItemType[] }) => {
   const [visibleMenus, setVisibleMenus] = useState<MenuItemType[]>([]);
   const [moreMenus, setMoreMenus] = useState<MenuItemType[]>([]);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [profileMenuOpen, setProfileMenuOpen] = useState(false);
+  const [moreMenuOpen, setMoreMenuOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   useEffect(() => {
     const adjustMenu = () => {
@@ -79,8 +81,34 @@ const Navbar = ({ menus }: { menus: MenuItemType[] }) => {
     return () => window.removeEventListener("resize", adjustMenu);
   }, [menus]);
 
+  // For the Profile Menu
+  const handleProfileMenuClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+    setProfileMenuOpen(true);
+  };
+
+  const handleProfileMenuClose = () => {
+    setProfileMenuOpen(false);
+    setAnchorEl(null); // Close the menu
+  };
+
+  // For the More Menu
+  const handleMoreMenuClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+    setMoreMenuOpen(true);
+  };
+
+  const handleMoreMenuClose = () => {
+    setMoreMenuOpen(false);
+    setAnchorEl(null); // Close the menu
+  };
+
   const profileMenu = (
-    <Menu>
+    <Menu
+      anchorEl={anchorEl}
+      open={profileMenuOpen}
+      onClose={handleProfileMenuClose}
+    >
       <MenuItem>
         <AccountCircleIcon sx={{ marginRight: 1 }} />
         My Account
@@ -93,7 +121,7 @@ const Navbar = ({ menus }: { menus: MenuItemType[] }) => {
   );
 
   const moreMenu = (
-    <Menu>
+    <Menu anchorEl={anchorEl} open={moreMenuOpen} onClose={handleMoreMenuClose}>
       {moreMenus.map((m: MenuItemType) => {
         const isActive = pathname === m.path;
         return (
@@ -181,7 +209,7 @@ const Navbar = ({ menus }: { menus: MenuItemType[] }) => {
             })}
 
             {moreMenus.length > 0 && (
-              <IconButton sx={{ padding: 2 }} onClick={(e) => moreMenu.open(e)}>
+              <IconButton sx={{ padding: 2 }} onClick={handleMoreMenuClick}>
                 <MoreVertIcon />
               </IconButton>
             )}
@@ -199,7 +227,7 @@ const Navbar = ({ menus }: { menus: MenuItemType[] }) => {
               </Badge>
             </IconButton>
 
-            <IconButton onClick={(e) => profileMenu.open(e)}>
+            <IconButton onClick={handleProfileMenuClick}>
               <Avatar sx={{ width: 36, height: 36, bgcolor: "gray" }}>
                 <img
                   src={ProfileImg}

@@ -1,15 +1,17 @@
-import { HomeIcon } from "@shared/components/icons/home";
-import { Contact } from "@shared/components/icons/contact";
-import { KnowledgeBase } from "@shared/components/icons/knowledgeBase";
-import { ProductIcon } from "@shared/components/icons/product";
-import { Integration } from "@shared/components/icons/integration";
-import { AgentIcon } from "@shared/components/icons/agent";
-import { PlaygroundIcon } from "@shared/components/icons/playground";
-import { ConversationIcon } from "@shared/components/icons/conversation";
-import { TemplateIcon } from "@shared/components/icons/template";
-import { Campaign } from "@shared/components/icons/campaign";
-import { Lead } from "@shared/components/icons/lead";
-import { UserManage } from "@shared/components/icons/userManage";
+import {
+  Contact,
+  KnowledgeBase,
+  ProductIcon,
+  Integration,
+  AgentIcon,
+  PlaygroundIcon,
+  ConversationIcon,
+  TemplateIcon,
+  Campaign,
+  Lead,
+  UserManage,
+} from "@shared/assets/icons/index";
+import { HomeIcon } from "@shared/assets/icons/home";
 
 export const sidebarItems = [
   { key: "home", icon: HomeIcon, label: "Home", path: "/home" },

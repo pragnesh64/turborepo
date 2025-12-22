@@ -6,18 +6,16 @@ import {
   Badge,
   Menu,
   MenuItem,
-  Button,
   Avatar,
-  Box,
+  Button,
+  Typography,
 } from "@mui/material";
 import {
-  Bell,
+  NotificationsOutlined,
   HelpOutline,
-  MoreVert,
   ArrowDropDown,
+  Menu as MenuIcon,
 } from "@mui/icons-material";
-import SidebarIcon from "@shared/components/icons/sidebaricon";
-import { SidebarReturnIcon } from "@shared/components/icons/sidebarReturnIcon";
 
 interface Props {
   collapsed: boolean;
@@ -32,263 +30,278 @@ const Header = ({
   isMobile = false,
   isTablet = false,
 }: Props) => {
-  const [anchorEl, setAnchorEl] =
-    (React.useState < null) | (HTMLElement > null);
-  const [menuAnchorEl, setMenuAnchorEl] =
-    (React.useState < null) | (HTMLElement > null);
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [notificationsAnchorEl, setNotificationsAnchorEl] =
+    React.useState<null | HTMLElement>(null);
 
-  const handleMenuClick = (event: React.MouseEvent<HTMLElement>) => {
+  const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) =>
     setAnchorEl(event.currentTarget);
-  };
+  const handleMenuClose = () => setAnchorEl(null);
 
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-  };
-
-  const handleDropdownClick = (event: React.MouseEvent<HTMLElement>) => {
-    setMenuAnchorEl(event.currentTarget);
-  };
-
-  const handleDropdownClose = () => {
-    setMenuAnchorEl(null);
-  };
-
-  const renderMobile = () => (
-    <AppBar
-      position="static"
-      sx={{
-        backgroundColor: "white",
-        boxShadow: 0,
-        padding: "0 16px",
-        height: "64px",
-      }}
-    >
-      <Toolbar
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <IconButton onClick={onToggle} aria-label="Open menu">
-          {collapsed ? <SidebarReturnIcon /> : <SidebarIcon />}
-        </IconButton>
-
-        <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-          <IconButton onClick={handleMenuClick}>
-            <MoreVert />
-          </IconButton>
-
-          <Menu
-            anchorEl={anchorEl}
-            open={Boolean(anchorEl)}
-            onClose={handleMenuClose}
-            MenuListProps={{
-              "aria-labelledby": "basic-button",
-            }}
-          >
-            <MenuItem>
-              <Badge badgeContent={3} color="primary">
-                <Bell />
-              </Badge>
-              Notifications
-            </MenuItem>
-            <MenuItem>
-              <HelpOutline /> Support
-            </MenuItem>
-            <MenuItem>Available Credits</MenuItem>
-            <MenuItem>Profile</MenuItem>
-            <MenuItem>Billing</MenuItem>
-            <MenuItem>Logout</MenuItem>
-          </Menu>
-
-          <IconButton onClick={handleDropdownClick}>
-            <Avatar sx={{ width: 32, height: 32, bgcolor: "gray" }}>JP</Avatar>
-          </IconButton>
-
-          <Menu
-            anchorEl={menuAnchorEl}
-            open={Boolean(menuAnchorEl)}
-            onClose={handleDropdownClose}
-            MenuListProps={{
-              "aria-labelledby": "basic-button",
-            }}
-          >
-            <MenuItem>Profile</MenuItem>
-            <MenuItem>Billing</MenuItem>
-            <MenuItem>Logout</MenuItem>
-          </Menu>
-        </Box>
-      </Toolbar>
-    </AppBar>
-  );
-
-  const renderTablet = () => (
-    <AppBar
-      position="static"
-      sx={{
-        backgroundColor: "white",
-        boxShadow: 0,
-        padding: "0 16px",
-        height: "64px",
-      }}
-    >
-      <Toolbar
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <IconButton onClick={onToggle} aria-label="Open menu">
-          {collapsed ? <SidebarReturnIcon /> : <SidebarIcon />}
-        </IconButton>
-
-        <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
-          <IconButton>
-            <HelpOutline sx={{ fontSize: 18, color: "gray" }} />
-          </IconButton>
-
-          <Badge badgeContent={3} color="primary">
-            <IconButton>
-              <Bell sx={{ fontSize: 18, color: "gray" }} />
-            </IconButton>
-          </Badge>
-
-          <Button
-            variant="outlined"
-            sx={{
-              borderColor: "amber",
-              backgroundColor: "amber",
-              color: "gray",
-              display: "flex",
-              alignItems: "center",
-              gap: 1,
-              fontSize: 13,
-            }}
-            endIcon={<ArrowDropDown sx={{ fontSize: 10 }} />}
-          >
-            Available Credits
-          </Button>
-
-          <IconButton onClick={handleDropdownClick}>
-            <Avatar sx={{ width: 32, height: 32, bgcolor: "gray" }}>JP</Avatar>
-          </IconButton>
-
-          <Menu
-            anchorEl={menuAnchorEl}
-            open={Boolean(menuAnchorEl)}
-            onClose={handleDropdownClose}
-            MenuListProps={{
-              "aria-labelledby": "basic-button",
-            }}
-          >
-            <MenuItem>Profile</MenuItem>
-            <MenuItem>Billing</MenuItem>
-            <MenuItem>Logout</MenuItem>
-          </Menu>
-        </Box>
-      </Toolbar>
-    </AppBar>
-  );
-
-  const renderDesktop = () => (
-    <AppBar
-      position="static"
-      sx={{
-        backgroundColor: "white",
-        boxShadow: 0,
-        padding: "0 16px",
-        height: "64px",
-      }}
-    >
-      <Toolbar
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <IconButton onClick={onToggle} aria-label="Open menu">
-          {collapsed ? <SidebarReturnIcon /> : <SidebarIcon />}
-        </IconButton>
-
-        <Box sx={{ display: "flex", alignItems: "center", gap: 5 }}>
-          <IconButton>
-            <HelpOutline sx={{ fontSize: 18, color: "gray" }} />
-          </IconButton>
-
-          <Badge badgeContent={3} color="primary">
-            <IconButton>
-              <Bell sx={{ fontSize: 18, color: "gray" }} />
-            </IconButton>
-          </Badge>
-
-          <Button
-            variant="outlined"
-            sx={{
-              borderColor: "amber",
-              backgroundColor: "amber",
-              color: "gray",
-              display: "flex",
-              alignItems: "center",
-              gap: 2,
-              fontSize: 14,
-              padding: "8px 16px",
-            }}
-            endIcon={<ArrowDropDown sx={{ fontSize: 12 }} />}
-          >
-            Available Credits
-          </Button>
-
-          <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
-            <Avatar sx={{ width: 36, height: 36, bgcolor: "gray" }}>JP</Avatar>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                textAlign: "left",
-              }}
-            >
-              <Box sx={{ fontWeight: "medium", fontSize: 14, color: "gray" }}>
-                John Partner
-              </Box>
-              <Box sx={{ fontSize: 12, color: "gray" }}>
-                partner@example.com
-              </Box>
-            </Box>
-
-            <IconButton onClick={handleDropdownClick}>
-              <ArrowDropDown sx={{ fontSize: 12, color: "gray" }} />
-            </IconButton>
-          </Box>
-
-          <Menu
-            anchorEl={menuAnchorEl}
-            open={Boolean(menuAnchorEl)}
-            onClose={handleDropdownClose}
-            MenuListProps={{
-              "aria-labelledby": "basic-button",
-            }}
-          >
-            <MenuItem>Profile</MenuItem>
-            <MenuItem>Billing</MenuItem>
-            <MenuItem>Logout</MenuItem>
-          </Menu>
-        </Box>
-      </Toolbar>
-    </AppBar>
-  );
+  const handleNotificationsMenuOpen = (event: React.MouseEvent<HTMLElement>) =>
+    setNotificationsAnchorEl(event.currentTarget);
+  const handleNotificationsMenuClose = () => setNotificationsAnchorEl(null);
 
   if (isMobile) {
-    return renderMobile();
+    return (
+      <AppBar
+        position="sticky"
+        sx={{
+          m: 0,
+          boxSizing: "border-box",
+          height: 64,
+          bgcolor: "white",
+          px: 3,
+        }}
+      >
+        <Toolbar
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          {/* Sidebar Toggle Icon */}
+          <IconButton color="inherit" onClick={onToggle} sx={{ ml: 2 }}>
+            {collapsed ? <ArrowDropDown /> : <MenuIcon />}
+          </IconButton>
+
+          {/* Notifications, Support, and Avatar */}
+          <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
+            {/* Notifications */}
+            <IconButton color="inherit" onClick={handleNotificationsMenuOpen}>
+              <Badge badgeContent={3} color="error">
+                <NotificationsOutlined />
+              </Badge>
+            </IconButton>
+
+            {/* Support Icon */}
+            <IconButton color="inherit">
+              <HelpOutline />
+            </IconButton>
+
+            {/* Avatar */}
+            <IconButton color="inherit" onClick={handleMenuOpen}>
+              <Avatar sx={{ bgcolor: "gray", width: 32, height: 32 }}>
+                JP
+              </Avatar>
+            </IconButton>
+          </div>
+        </Toolbar>
+
+        {/* Notifications Dropdown */}
+        <Menu
+          anchorEl={notificationsAnchorEl}
+          open={Boolean(notificationsAnchorEl)}
+          onClose={handleNotificationsMenuClose}
+        >
+          <MenuItem>Notifications</MenuItem>
+          <MenuItem>Support</MenuItem>
+          <MenuItem>Available Credits</MenuItem>
+          <MenuItem>Profile</MenuItem>
+          <MenuItem>Billing</MenuItem>
+          <MenuItem>Logout</MenuItem>
+        </Menu>
+
+        {/* User Menu Dropdown */}
+        <Menu
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={handleMenuClose}
+        >
+          <MenuItem>Profile</MenuItem>
+          <MenuItem>Billing</MenuItem>
+          <MenuItem>Logout</MenuItem>
+        </Menu>
+      </AppBar>
+    );
   }
 
   if (isTablet) {
-    return renderTablet();
+    return (
+      <AppBar
+        position="sticky"
+        sx={{
+          m: 0,
+          boxSizing: "border-box",
+          height: 64,
+          bgcolor: "white",
+          px: 4,
+        }}
+      >
+        <Toolbar
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          {/* Sidebar Toggle Icon */}
+          <IconButton color="inherit" onClick={onToggle} sx={{ mr: 3 }}>
+            {collapsed ? <ArrowDropDown /> : <MenuIcon />}
+          </IconButton>
+
+          {/* Notifications, Credits, and Avatar */}
+          <div style={{ display: "flex", gap: "24px", alignItems: "center" }}>
+            {/* Notifications */}
+            <IconButton color="inherit" onClick={handleNotificationsMenuOpen}>
+              <Badge badgeContent={3} color="error">
+                <NotificationsOutlined />
+              </Badge>
+            </IconButton>
+
+            {/* Available Credits */}
+            <Button
+              variant="outlined"
+              color="secondary"
+              sx={{ textTransform: "none" }}
+              endIcon={<ArrowDropDown />}
+            >
+              Available Credits
+            </Button>
+
+            {/* Avatar */}
+            <IconButton color="inherit" onClick={handleMenuOpen}>
+              <Avatar sx={{ bgcolor: "gray", width: 32, height: 32 }}>
+                JP
+              </Avatar>
+            </IconButton>
+          </div>
+        </Toolbar>
+
+        {/* Notifications Dropdown */}
+        <Menu
+          anchorEl={notificationsAnchorEl}
+          open={Boolean(notificationsAnchorEl)}
+          onClose={handleNotificationsMenuClose}
+        >
+          <MenuItem>Notifications</MenuItem>
+          <MenuItem>Support</MenuItem>
+          <MenuItem>Available Credits</MenuItem>
+        </Menu>
+
+        {/* User Menu Dropdown */}
+        <Menu
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={handleMenuClose}
+        >
+          <MenuItem>Profile</MenuItem>
+          <MenuItem>Billing</MenuItem>
+          <MenuItem>Logout</MenuItem>
+        </Menu>
+      </AppBar>
+    );
   }
 
-  return renderDesktop();
+  return (
+    <AppBar
+      position="sticky"
+      sx={{
+        m: 0,
+        boxSizing: "border-box",
+        height: 64,
+        bgcolor: "white",
+        pr: 5,
+        pl: 0,
+      }}
+    >
+      <Toolbar
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        {/* Sidebar Toggle Icon */}
+        <IconButton color="inherit" onClick={onToggle} sx={{ ml: 1 }}>
+          {collapsed ? <ArrowDropDown /> : <MenuIcon />}
+        </IconButton>
+
+        {/* Notifications, Support, Credits, and User Info */}
+        <div style={{ display: "flex", gap: "40px", alignItems: "center" }}>
+          {/* Support Icon */}
+          <IconButton color="inherit">
+            <HelpOutline />
+          </IconButton>
+
+          {/* Notifications */}
+          <IconButton color="inherit" onClick={handleNotificationsMenuOpen}>
+            <Badge badgeContent={3} color="error">
+              <NotificationsOutlined />
+            </Badge>
+          </IconButton>
+
+          {/* Available Credits Button */}
+          <Button
+            variant="outlined"
+            color="secondary"
+            sx={{
+              textTransform: "none",
+              display: "flex",
+              alignItems: "center",
+            }}
+            endIcon={<ArrowDropDown />}
+          >
+            Available Credits
+          </Button>
+
+          {/* Avatar and User Info */}
+          <IconButton color="inherit" onClick={handleMenuOpen}>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <Avatar sx={{ bgcolor: "gray", width: 36, height: 36 }}>
+                JP
+              </Avatar>
+              <div
+                style={{
+                  marginLeft: 8,
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <Typography
+                  variant="body2"
+                  color="textPrimary"
+                  sx={{ fontWeight: "medium" }}
+                >
+                  John Partner
+                </Typography>
+                <Typography variant="body2" color="textSecondary">
+                  partner@example.com
+                </Typography>
+              </div>
+              <ArrowDropDown sx={{ fontSize: 16, color: "gray" }} />
+            </div>
+          </IconButton>
+        </div>
+      </Toolbar>
+
+      {/* Notifications Dropdown */}
+      <Menu
+        anchorEl={notificationsAnchorEl}
+        open={Boolean(notificationsAnchorEl)}
+        onClose={handleNotificationsMenuClose}
+      >
+        <MenuItem>Notifications</MenuItem>
+        <MenuItem>Support</MenuItem>
+        <MenuItem>Available Credits</MenuItem>
+        <MenuItem>Profile</MenuItem>
+        <MenuItem>Billing</MenuItem>
+        <MenuItem>Logout</MenuItem>
+      </Menu>
+
+      {/* User Menu Dropdown */}
+      <Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleMenuClose}
+      >
+        <MenuItem>Profile</MenuItem>
+        <MenuItem>Billing</MenuItem>
+        <MenuItem>Logout</MenuItem>
+      </Menu>
+    </AppBar>
+  );
 };
 
 export default Header;
